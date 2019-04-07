@@ -23,15 +23,14 @@ export interface subscriptionResponse {
 })
 
 export class SubscriptionTableComponent implements OnInit {
-	subscriptionList: subscription[]; 
+	subscriptionList: any;// subscription[]; 
 	subName: string;
 	amount: number;
 
 	displayedColumns: string[] = ['img', 'name', 'paydate', 'amount', 'status'];
 	dataSource: subscription[];
-	subscriptionObservable: Observable<Object>; 
-	httpName: any;
-	subscriptionNameObservable: any;
+	httpSubscriptions: Observable<subscription[]> //<subscription[]>;
+	httpName: Observable<string[]>;
 
 	constructor(private http: HttpClient) { }
 
@@ -42,23 +41,21 @@ export class SubscriptionTableComponent implements OnInit {
 	getSubscriptions() {
 		console.log('calling get subscriptions')
 
-		this.subscriptionObservable = this.http.get('http://localhost:3000/subscription')
+		this.httpSubscriptions = this.http.get('http://localhost:3000/subscription')
 			.pipe(
-				map(res => res["subscriptions"] )
+				map(res => {
+					
+					return res["subscriptions"]
+				})
 			)
-		
-		this.subscriptionNameObservable = this.subscriptionObservable
+
+		this.httpName = this.httpSubscriptions
 			.pipe(
-				map(res => res["name"])
+				map(res => res.map( res => {
+					return res["name"]
+				}))
 			)
-<<<<<<< HEAD
 			// .subscribe( res => console.log('hi', res))
-=======
->>>>>>> master
-
-
-		this.subscriptionObservable.subscribe( res => console.log(res))
-		this.subscriptionNameObservable.subscribe( res => console.log(res))
 
 	}
 }
