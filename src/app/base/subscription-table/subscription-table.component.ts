@@ -1,21 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, noop, } from 'rxjs';
+import { map, filter } from 'rxjs/operators';
 
-// table.increments('id').primary();
-// table.string('name').notNullable();
-// table.integer('amount');
-// table.string('image');
-// table.string('linkToPage');
-// table.boolean('status');
-// table.date('createdAt')
-interface NZsubscription {
+interface subscription {
+	id: number;
 	name: string;
 	amount: number;
 	image: string;
 	linkToPage: string;
-	status: boolean;
-	createdAt: Date;
+	createdAt: null | boolean;
+}
+
+export interface subscriptionResponse {
+	subscriptions: subscription[];
 }
 
 @Component({
@@ -23,26 +21,50 @@ interface NZsubscription {
 	templateUrl: './subscription-table.component.html',
 	styleUrls: ['./subscription-table.component.scss']
 })
+
 export class SubscriptionTableComponent implements OnInit {
-	subscriptions: Subscription ; // need to update this Subscription to match the incoming data
+	subscriptionList: any;// subscription[]; 
 	subName: string;
 	amount: number;
+
+	displayedColumns: string[] = ['img', 'name', 'paydate', 'amount', 'status'];
+	dataSource: subscription[];
+	httpSubscriptions: any;//Observable<Object> //<subscription[]>;
+	httpName: any;
+
 	constructor(private http: HttpClient) { }
 
 	ngOnInit() {
-		console.log('init subscription table')
 		this.getSubscriptions()
 	}
 
 	getSubscriptions() {
-		// call a service to handle it - components manage state
 		console.log('calling get subscriptions')
-		this.subscriptions = this.http.get('http://localhost:3000/subscription')
-			.subscribe( (res: any) => {
-				console.log(res)
-				this.subName = res.subscriptions[0].name;
-				this.amount = res.subscriptions[0].amount;
-				console.log(this.subName, this.amount)
-			})
+
+		this.httpSubscriptions = this.http.get('http://localhost:3000/subscription')
+			.pipe(
+				map(res => {
+					
+					return res["subscriptions"]
+				})
+			)
+			.pipe(
+				map(res => res.map( res => {
+					// console.log('map',res["name"])
+					return res["name"]
+				}))
+			)
+			.subscribe( res => console.log('hi', res))
+
+		// this.httpSubscriptions.subscribe(res => {
+		// 	console.log('you made this observale', res)
+		// })
+
+
+		// Pipe this value so that you pull out the column values in array
+		// .subscribe((res: subscriptionResponse) => {
+
+		// 	// console.log("subscription list", this.subscriptionList)
+		// })
 	}
 }
