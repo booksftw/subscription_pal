@@ -54,7 +54,7 @@ export class SubscriptionTableComponent implements OnInit {
 					return res["name"]
 				}))
 			)
-			.subscribe( res => console.log('hi', res))
+			// .subscribe( res => console.log('hi', res))
 
 		// this.httpSubscriptions.subscribe(res => {
 		// 	console.log('you made this observale', res)
