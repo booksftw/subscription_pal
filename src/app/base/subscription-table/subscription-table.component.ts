@@ -23,14 +23,15 @@ export interface subscriptionResponse {
 })
 
 export class SubscriptionTableComponent implements OnInit {
-	subscriptionList: any;// subscription[]; 
+	subscriptionList: subscription[]; 
 	subName: string;
 	amount: number;
 
 	displayedColumns: string[] = ['img', 'name', 'paydate', 'amount', 'status'];
 	dataSource: subscription[];
-	httpSubscriptions: any;//Observable<Object> //<subscription[]>;
+	subscriptionObservable: Observable<Object>; 
 	httpName: any;
+	subscriptionNameObservable: any;
 
 	constructor(private http: HttpClient) { }
 
@@ -41,30 +42,23 @@ export class SubscriptionTableComponent implements OnInit {
 	getSubscriptions() {
 		console.log('calling get subscriptions')
 
-		this.httpSubscriptions = this.http.get('http://localhost:3000/subscription')
+		this.subscriptionObservable = this.http.get('http://localhost:3000/subscription')
 			.pipe(
-				map(res => {
-					
-					return res["subscriptions"]
-				})
+				map(res => res["subscriptions"] )
 			)
+		
+		this.subscriptionNameObservable = this.subscriptionObservable
 			.pipe(
-				map(res => res.map( res => {
-					// console.log('map',res["name"])
-					return res["name"]
-				}))
+				map(res => res["name"])
 			)
+<<<<<<< HEAD
 			// .subscribe( res => console.log('hi', res))
-
-		// this.httpSubscriptions.subscribe(res => {
-		// 	console.log('you made this observale', res)
-		// })
+=======
+>>>>>>> master
 
 
-		// Pipe this value so that you pull out the column values in array
-		// .subscribe((res: subscriptionResponse) => {
+		this.subscriptionObservable.subscribe( res => console.log(res))
+		this.subscriptionNameObservable.subscribe( res => console.log(res))
 
-		// 	// console.log("subscription list", this.subscriptionList)
-		// })
 	}
 }

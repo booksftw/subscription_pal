@@ -7,7 +7,7 @@
   <!-- Position Column -->
   <ng-container matColumnDef="img">
     <th mat-header-cell *matHeaderCellDef> IMG </th>
-    <td mat-cell *matCellDef="let element"> {{httpSubscriptions[0].name | async}} </td>
+    <td mat-cell *matCellDef="let element"> {{ subscriptionObservable  | async}} </td>
   </ng-container>
 
   <!-- Name Column -->
@@ -39,4 +39,9 @@
 
 
 
+<<<<<<< HEAD
 {{ httpSubscriptions | async}}
+=======
+{{ subscriptionObservable | async}}
+{{ subscriptionNameObservable | async}}
+>>>>>>> master
