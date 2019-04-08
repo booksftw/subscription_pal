@@ -3,13 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, Subscription, noop, } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
-interface subscription {
+export interface subscription {
 	id: number;
 	name: string;
 	amount: number;
 	image: string;
 	linkToPage: string;
 	createdAt: null | boolean;
+}
+
+interface subscriptionName {
+	[name: string]
 }
 
 export interface subscriptionResponse {
@@ -23,14 +27,17 @@ export interface subscriptionResponse {
 })
 
 export class SubscriptionTableComponent implements OnInit {
-	subscriptionList: any;// subscription[]; 
+	subscriptionList: any; 
 	subName: string;
 	amount: number;
 
+	test(arg) { return arg }
+
 	displayedColumns: string[] = ['img', 'name', 'paydate', 'amount', 'status'];
 	dataSource: subscription[];
-	httpSubscriptions: Observable<subscription[]> //<subscription[]>;
-	httpName: Observable<string[]>;
+	httpSubscriptions: Observable<subscription[]>; //<subscription[]>;
+	httpName: Observable<subscriptionName[]>;
+	httpAmount: any;
 
 	constructor(private http: HttpClient) { }
 
@@ -44,18 +51,18 @@ export class SubscriptionTableComponent implements OnInit {
 		this.httpSubscriptions = this.http.get('http://localhost:3000/subscription')
 			.pipe(
 				map(res => {
-					
 					return res["subscriptions"]
 				})
 			)
 
 		this.httpName = this.httpSubscriptions
 			.pipe(
-				map(res => res.map( res => {
+				map(res => res.map(res => {
 					return res["name"]
 				}))
 			)
-			// .subscribe( res => console.log('hi', res))
+
+		// this.httpAmount = this.httpSubscriptions
 
 	}
 }
