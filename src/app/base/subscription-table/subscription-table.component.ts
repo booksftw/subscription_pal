@@ -75,6 +75,10 @@ export class SubscriptionTableComponent implements OnInit {
 	}
 
 	rowClicked(row) {
-		console.log('row', row)
+		console.log('row', row, this.selection)
+	}
+
+	deleteRowClicked(e) {
+		console.log('delete row clicked', e)
 	}
 }
