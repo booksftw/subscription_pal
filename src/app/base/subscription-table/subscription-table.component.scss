@@ -1,3 +1,32 @@
+.headerContainer{
+  text-align: center;
+  margin: 30px auto;
+}
+
+#brandHeader {
+  font-size: 30px;
+  display:inline-block;
+}
+
+#addSubscriptionBtn{
+  margin-left: 20px;
+}
+
+.subscriptionTableInput{
+  display: block;
+  width:50%;
+  margin: auto;
+}
+
 table {
-    width: 100%;
+  width: 80%;
+  margin: auto;
+}
+
+.mat-column-select {
+  overflow: initial;
+}
+
+.mat-checkbox {
+  margin-left: 25px;
 }

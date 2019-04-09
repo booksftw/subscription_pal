@@ -4,6 +4,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './material.module'
 
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
+
 import { AppComponent } from './app.component';
 import { BaseComponent } from './base/base.component';
 import { SubscriptionTableComponent } from './base/subscription-table/subscription-table.component';
@@ -20,7 +22,8 @@ import {HttpClientModule} from '@angular/common/http'
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
