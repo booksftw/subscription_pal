@@ -1,5 +1,42 @@
-<!-- <p>
-  base works!
-</p> -->
+<button mat-icon-button (click)="settingsNav.toggle()">
+  <mat-icon>menu</mat-icon>
+</button>
+<button mat-icon-button (click)="subscriptionNav.toggle()">
+  <mat-icon>functions</mat-icon>
+</button>
+<mat-sidenav-container [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+  <mat-sidenav
+    #settingsNav
+    [mode]="mobileQuery.matches ? 'over' : 'over'"
+    [fixedInViewport]="mobileQuery.matches"
+    fixedTopGap="56"
+    posiion="start"
+  >
+    <mat-nav-list>
+      <!-- Settings Nav -->
+      <a mat-list-item>Howdy</a>
+    </mat-nav-list>
+  </mat-sidenav>
 
-<app-subscription-table></app-subscription-table>
+  <mat-sidenav
+    #subscriptionNav
+    [mode]="mobileQuery.matches ? 'over' : 'over'"
+    [fixedInViewport]="mobileQuery.matches"
+    fixedTopGap="56"
+    position="end"
+  >
+    <mat-nav-list>
+      <!-- Subscription Nav -->
+      <a mat-list-item>Howdy</a>
+      <app-subscription-sidebar mat-list-item [sidebarForms]="sidebarForms"></app-subscription-sidebar>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <div>
+    <app-subscription-table
+      (editSub)="onEditSubscription($event)"
+      (addSub)="onAddSubscription()"
+    >
+    </app-subscription-table>
+  </div>
+</mat-sidenav-container>

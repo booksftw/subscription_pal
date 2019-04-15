@@ -1,6 +1,6 @@
 <div class="headerContainer">
   <h1 id="brandHeader">Subscription Pal</h1>
-  <button mat-raised-button id="addSubscriptionBtn">Add Subscription</button>
+  <button mat-raised-button id="addSubscriptionBtn" (click)="addSubscription()">Add Subscription</button>
   <mat-form-field class="subscriptionTableInput">
     <input
       matInput
@@ -59,5 +59,5 @@
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="rowClicked(row)"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="editSubscription(row)"></tr>
 </table>

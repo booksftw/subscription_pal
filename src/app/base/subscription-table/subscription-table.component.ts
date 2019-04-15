@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, Output, EventEmitter } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { Observable, Subscription, noop, } from 'rxjs'
 import { map, filter, tap, shareReplay } from 'rxjs/operators'
@@ -26,13 +26,14 @@ export interface subscriptionResponse {
 })
 
 export class SubscriptionTableComponent implements OnInit {
+	@Output() editSub: EventEmitter<number> = new EventEmitter(); 
+	@Output() addSub: EventEmitter<void> = new EventEmitter();
 	subscriptionList: any
 	subName: string
 	amount: number
 
 	displayedColumns: string[] = ['select', 'id', 'name', 'amount', 'status', 'remove']
 	dataSource = new MatTableDataSource([])
-	// httpSubscriptions: Subscription<subscription[]>
 	selection = new SelectionModel<any>(true, []) // new SelectionModel<subscription>(true, [])
 	listLength: number
 
@@ -46,7 +47,7 @@ export class SubscriptionTableComponent implements OnInit {
 
 		this.http.get('http://localhost:3000/subscription')
 			.pipe(
-				tap((res) => console.log(res)),
+				// tap((res) => console.log(res)),
 				map(res => {
 					return res["subscriptions"]
 				}),
@@ -58,7 +59,6 @@ export class SubscriptionTableComponent implements OnInit {
 	applyFilter(filterValue: string) {
 		this.dataSource.filter = filterValue.trim().toLowerCase();
 	}
-
 
 	/** Whether the number of selected elements matches the total number of rows. */
 	isAllSelected() {
@@ -80,5 +80,16 @@ export class SubscriptionTableComponent implements OnInit {
 
 	deleteRowClicked(e) {
 		console.log('delete row clicked', e)
+	}
+	
+	addSubscription() {
+		this.addSub.emit()
+		console.log('sending add sub event to parent')
+	}
+
+	editSubscription(subscription: any) {
+		const {id} = subscription
+		this.editSub.emit(id);
+		console.log('sending sub id to parent')
 	}
 }
