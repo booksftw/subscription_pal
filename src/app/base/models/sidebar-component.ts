@@ -1,3 +1,3 @@
-export interface SidebarComponent {
+export interface SidebarComponentInterface {
     data: any
 }

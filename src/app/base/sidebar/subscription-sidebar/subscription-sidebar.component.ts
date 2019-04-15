@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ComponentFactoryResolver } from '@angular/core';
-import { SidebarItem } from '../util/sidebarItem';
-import { SidebarDirective } from '../shared/sidebar.directive';
-import { SidebarComponent } from '../models/sidebar-component';
+import { SidebarItem } from '../../util/sidebarItem';
+import { SidebarDirective } from '../../shared/sidebar.directive';
+import { SidebarComponentInterface } from '../../models/sidebar-component';
 
 @Component({
   selector: 'app-subscription-sidebar',
@@ -26,7 +26,7 @@ export class SubscriptionSidebarComponent implements OnInit {
     viewContainerRef.clear()
 
     let componentRef = viewContainerRef.createComponent(componentFactory);
-    (<SidebarComponent>componentRef.instance).data = activeSidebarItem.data;
+    (<SidebarComponentInterface>componentRef.instance).data = activeSidebarItem.data;
   }
 
   ngAfterContentInit() {

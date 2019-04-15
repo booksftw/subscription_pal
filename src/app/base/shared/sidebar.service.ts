@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { SidebarItem } from '../util/sidebarItem'
-import {AddSubscriptionFormComponent} from '../subscription-sidebar/add-subscription-form/add-subscription-form.component'
+import {AddSubscriptionFormComponent} from '../sidebar/subscription-sidebar/add-subscription-form/add-subscription-form.component'
 
 @Injectable({
   providedIn: 'root'
