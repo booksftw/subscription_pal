@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { SidebarItem } from '../util/sidebarItem'
+import { SidebarItem } from '../sidebar/util/sidebarItem'
 import {AddSubscriptionFormComponent} from '../sidebar/subscription-sidebar/add-subscription-form/add-subscription-form.component'
 
 @Injectable({

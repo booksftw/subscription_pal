@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {SidebarComponentInterface} from '../../../models/sidebar-component'
+import {SidebarComponentInterface} from '../../models/sidebar-component'
 
 @Component({
   selector: 'app-add-subscription-form',

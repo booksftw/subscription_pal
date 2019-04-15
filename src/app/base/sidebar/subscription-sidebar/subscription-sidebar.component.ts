@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ComponentFactoryResolver } from '@angular/core';
-import { SidebarItem } from '../../util/sidebarItem';
+import { SidebarItem } from '../util/sidebarItem';
 import { SidebarDirective } from '../../shared/sidebar.directive';
-import { SidebarComponentInterface } from '../../models/sidebar-component';
+import { SidebarComponentInterface } from '../models/sidebar-component';
 
 @Component({
   selector: 'app-subscription-sidebar',

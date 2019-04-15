@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { SidebarItem } from './util/sidebarItem';
+import { SidebarItem } from './sidebar/util/sidebarItem';
 import { SidebarService } from './shared/sidebar.service';
 
 @Component({
