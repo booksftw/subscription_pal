@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ComponentFactoryResolver } from '@angular/core';
-import { SidebarItem } from '../util/sidebarItem';
-import { SidebarDirective } from '../../shared/sidebar.directive';
-import { SidebarComponentInterface } from '../models/sidebar-component';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-subscription-sidebar',
@@ -9,30 +9,14 @@ import { SidebarComponentInterface } from '../models/sidebar-component';
   styleUrls: ['./subscription-sidebar.component.scss']
 })
 export class SubscriptionSidebarComponent implements OnInit {
-  @Input() sidebarForms: SidebarItem[]
-  @ViewChild(SidebarDirective) sidebarContainer: SidebarDirective
+  nzState: boolean
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
+  constructor(
+    private route: ActivatedRoute,
+    ) { }
 
   ngOnInit() {
-      this.loadSidebar()
+      console.log(this.route.params)
    }
-
-  loadSidebar() {
-
-    let activeSidebarItem = this.sidebarForms[0]
-    let componentFactory = this.componentFactoryResolver.resolveComponentFactory(activeSidebarItem.component)
-
-    let viewContainerRef = this.sidebarContainer.viewContainerRef
-    viewContainerRef.clear()
-
-    let componentRef = viewContainerRef.createComponent(componentFactory);
-    (<SidebarComponentInterface>componentRef.instance).data = activeSidebarItem.data;
-  }
-
-  // ngAfterContentInit() {
-
-  //   this.loadSidebar()
-  // }
 
 }
