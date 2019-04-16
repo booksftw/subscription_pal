@@ -1,8 +1,6 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild, ComponentFactoryResolver } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Location } from '@angular/common';
-import { SidebarDirective } from './shared/sidebar.directive';
-import {AddSubscriptionFormComponent} from './sidebar/subscription-sidebar/add-subscription-form/add-subscription-form.component'
 import { SidebarService, SidebarName } from './shared/sidebar.service';
 
 @Component({
@@ -13,7 +11,6 @@ import { SidebarService, SidebarName } from './shared/sidebar.service';
 export class BaseComponent implements OnInit, OnDestroy {
   @ViewChild('settingsNav') settingsNav
   @ViewChild('subscriptionNav') subscriptionNav
-  // @ViewChild(SidebarDirective) subscriptionSidebarContainer: SidebarDirective
 
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
@@ -22,7 +19,6 @@ export class BaseComponent implements OnInit, OnDestroy {
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
     private location: Location,
-    private componentFactoryResolver: ComponentFactoryResolver,
     private sidebarService: SidebarService
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -50,12 +46,6 @@ export class BaseComponent implements OnInit, OnDestroy {
         // Update Userid to be dynamic
         const userId = 2
         this.location.go(`/subscription/${userId}/add`)
-        
-        // make component dynamic
-        // let componentFactory = this.componentFactoryResolver.resolveComponentFactory(AddSubscriptionFormComponent)
-        // this.subscriptionSidebarContainer.viewContainerRef.clear()
-        // this.subscriptionSidebarContainer.viewContainerRef.createComponent(componentFactory)
-
         this.subscriptionNav.toggle()
         break;
       default:
@@ -73,8 +63,6 @@ export class BaseComponent implements OnInit, OnDestroy {
     console.log(`Parent Here: Edit subsription number ${subscriptionId}`)
     this.toggleNav('subscription')
   }
-
-
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);

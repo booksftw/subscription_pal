@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core'
+import { Injectable, Component } from '@angular/core'
 import { SidebarItem } from '../sidebar/util/sidebarItem'
 import { AddSubscriptionFormComponent } from '../sidebar/subscription-sidebar/add-subscription-form/add-subscription-form.component'
 import { BehaviorSubject, Subject } from 'rxjs';
+import { EditSubscriptionFormComponent } from '../sidebar/subscription-sidebar/edit-subscription-form/edit-subscription-form.component';
 
 export enum SidebarName {
   None,
@@ -14,22 +15,24 @@ export enum SidebarName {
 })
 export class SidebarService {
 
-  private _sidebarSource = new BehaviorSubject<SidebarName>(SidebarName.None) // Change to add just testing edit
+  private _sidebarSource: Subject<any> = new Subject() // Change to add just testing edit
+  // private _sidebarSource = new BehaviorSubject<SidebarName>(SidebarName.None) // Change to add just testing edit
   public currentSidebar = this._sidebarSource.asObservable()
 
   setSidebar(type: SidebarName) {
+    // Create a item package and assign the generic type to that item package. Of course put these values in there.
     switch (type) {
       case SidebarName.Add:
-        this._sidebarSource.next(SidebarName.Add)
+        this._sidebarSource.next(new AddSubscriptionFormComponent)
         break;
       case SidebarName.Edit:
-        this._sidebarSource.next(SidebarName.Edit)
+        this._sidebarSource.next(new EditSubscriptionFormComponent)
         break;
       case SidebarName.None:
-        this._sidebarSource.next(SidebarName.None)
+        this._sidebarSource.next(false)
         break;
       default:
-        this._sidebarSource.next(SidebarName.None)
+        this._sidebarSource.next(false)
         break;
     }
   }
