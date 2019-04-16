@@ -12,6 +12,8 @@ import { SubscriptionTableComponent } from './base/subscription-table/subscripti
 import {HttpClientModule} from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
 import { SidebarModule } from './base/sidebar/sidebar.module';
+import { AddSubscriptionFormComponent } from './base/sidebar/subscription-sidebar/add-subscription-form/add-subscription-form.component';
+import { EditSubscriptionFormComponent } from './base/sidebar/subscription-sidebar/edit-subscription-form/edit-subscription-form.component';
 
 @NgModule({
   declarations: [
@@ -31,5 +33,6 @@ import { SidebarModule } from './base/sidebar/sidebar.module';
   ],
   providers: [],
   bootstrap: [AppComponent],
+  entryComponents: [AddSubscriptionFormComponent, EditSubscriptionFormComponent]
 })
 export class AppModule { }

@@ -24,7 +24,8 @@ import {MaterialModule} from '../../material.module'
     SidebarDirective
   ],
   entryComponents: [
-    AddSubscriptionFormComponent
+    AddSubscriptionFormComponent,
+    EditSubscriptionFormComponent
   ]
 })
 export class SidebarModule { }

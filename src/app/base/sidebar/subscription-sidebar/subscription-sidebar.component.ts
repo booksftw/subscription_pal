@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ComponentFactoryResolver } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ComponentFactoryResolver, ComponentFactory } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -22,19 +22,21 @@ export class SubscriptionSidebarComponent implements OnInit {
 
   ngOnInit() {
     console.log('side bar smart component init')
-    const nzUpdates = this.sidebarService.currentSidebar.pipe(
-      map( console.log )
-    )
+    // const nzUpdates = this.sidebarService.currentSidebar.pipe(
+    //   map( console.log )
+    // )
 
-    nzUpdates.subscribe(
+    this.sidebarService.currentSidebar.subscribe(
       (component: any) => {
-
-       if (!component) return
-
-        let componentFactory = this.componentFactoryResolver.resolveComponentFactory(component)
-        console.log('compfact', componentFactory)
-        this.subscriptionSidebarContainer.viewContainerRef.clear()
-        this.subscriptionSidebarContainer.viewContainerRef.createComponent(componentFactory)
+        console.log(component, 'console log from subscription')
+       if (!component) {
+         return
+       } {
+         let componentFactory = this.componentFactoryResolver.resolveComponentFactory(component)
+         console.log('compfact', componentFactory)
+         this.subscriptionSidebarContainer.viewContainerRef.clear()
+         this.subscriptionSidebarContainer.viewContainerRef.createComponent(componentFactory)
+       }
       }
     )
 
