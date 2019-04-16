@@ -1,24 +1,34 @@
 import { Injectable } from '@angular/core'
 import { SidebarItem } from '../sidebar/util/sidebarItem'
 import { AddSubscriptionFormComponent } from '../sidebar/subscription-sidebar/add-subscription-form/add-subscription-form.component'
+import { BehaviorSubject, Subject } from 'rxjs';
+
+export enum SidebarName {
+  None,
+  Add,
+  Edit
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class SidebarService {
 
-  getSidebars() {
-    // Because we made an interface and we're passing this to another part of program
-    // Other places in the program can use it AGNOSTIC. 
-    // THE REST OF THE PROGRAM DOESNT CARE ABOUT WHERE IT COMES FROM
-    // IT JUST CARES THAT IT FOLLOWS THE INTERFACE SO THAT IT CAN GO TO THE MAGIC SHELF AND GET IT
-    // THE ADVANTAGE IS THAT WE CAN SWAP THIS SIDEBAR ITEM WITH ANYTHING ELSE AND LONG AS IT FOLLOWS THE INTERFACE
-    // WERE GOOD
-    // const addSubscriptionSidebarItem = new SidebarItem(AddSubscriptionFormComponent, {name:'Nicholas Z Service'})
-    const addSubscriptionSidebarItem = new SidebarItem(AddSubscriptionFormComponent, {
-      text: 'One', cols: 3, rows: 1, color: 'lightblue',
-    })
-    return [addSubscriptionSidebarItem]
+  private _sidebarSource= new BehaviorSubject<SidebarName>(SidebarName.None) // Change to add just testing edit
+  public currentSidebar = this._sidebarSource.asObservable()
+
+  setSidebar(type: SidebarName) {
+    if (type === SidebarName.Add) {
+      // set side bar state to add
+      this._sidebarSource.next( SidebarName.Add )
+    }    
   }
+
+  getSidebars() {
+    
+  }
+
+
+
 
 }

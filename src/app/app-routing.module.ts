@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {NztestsComponent} from './base/sidebar/nztests/nztests.component'
+import { SubscriptionSidebarComponent } from './base/sidebar/subscription-sidebar/subscription-sidebar.component';
+import { BaseComponent } from './base/base.component';
 
 const routes: Routes = [
-  { path: 'nz', component: NztestsComponent },
+  {path:'', component: BaseComponent},
+  {path:'**', component: BaseComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes)], 
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

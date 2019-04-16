@@ -11,10 +11,6 @@ import { BaseComponent } from './base/base.component';
 import { SubscriptionTableComponent } from './base/subscription-table/subscription-table.component';
 import {HttpClientModule} from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
-// import { SubscriptionSidebarComponent } from './base/sidebar/subscription-sidebar/subscription-sidebar.component';
-import { AddSubscriptionFormComponent } from './base/sidebar/subscription-sidebar/add-subscription-form/add-subscription-form.component';
-// import { EditSubscriptionFormComponent } from './base/sidebar/subscription-sidebar/edit-subscription-form/edit-subscription-form.component';
-// import { SidebarDirective } from './base/shared/sidebar.directive';
 import { SidebarModule } from './base/sidebar/sidebar.module';
 
 @NgModule({
@@ -25,16 +21,15 @@ import { SidebarModule } from './base/sidebar/sidebar.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
     LayoutModule,
-    SidebarModule
+    SidebarModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
-  // entryComponents: [AddSubscriptionFormComponent]
 })
 export class AppModule { }

@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewChild, ComponentFactoryResolver } from '@
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { SidebarService } from '../../shared/sidebar.service';
 
 @Component({
   selector: 'app-subscription-sidebar',
@@ -9,14 +10,14 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./subscription-sidebar.component.scss']
 })
 export class SubscriptionSidebarComponent implements OnInit {
-  nzState: boolean
 
   constructor(
-    private route: ActivatedRoute,
+    private sidebarService: SidebarService
     ) { }
 
   ngOnInit() {
-      console.log(this.route.params)
+    console.log('side bar smart component init')
+    this.sidebarService.currentSidebar.subscribe(console.log)
    }
 
 }
