@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { SidebarItem } from '../sidebar/util/sidebarItem'
-import {AddSubscriptionFormComponent} from '../sidebar/subscription-sidebar/add-subscription-form/add-subscription-form.component'
+import { AddSubscriptionFormComponent } from '../sidebar/subscription-sidebar/add-subscription-form/add-subscription-form.component'
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,10 @@ export class SidebarService {
     // IT JUST CARES THAT IT FOLLOWS THE INTERFACE SO THAT IT CAN GO TO THE MAGIC SHELF AND GET IT
     // THE ADVANTAGE IS THAT WE CAN SWAP THIS SIDEBAR ITEM WITH ANYTHING ELSE AND LONG AS IT FOLLOWS THE INTERFACE
     // WERE GOOD
-    const addSubscriptionSidebarItem = new SidebarItem(AddSubscriptionFormComponent, {name:'Nicholas Z'})
+    // const addSubscriptionSidebarItem = new SidebarItem(AddSubscriptionFormComponent, {name:'Nicholas Z Service'})
+    const addSubscriptionSidebarItem = new SidebarItem(AddSubscriptionFormComponent, {
+      text: 'One', cols: 3, rows: 1, color: 'lightblue',
+    })
     return [addSubscriptionSidebarItem]
   }
 

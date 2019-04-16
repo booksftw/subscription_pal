@@ -4,6 +4,9 @@ import { SubscriptionSidebarComponent } from './subscription-sidebar/subscriptio
 import { AddSubscriptionFormComponent } from './subscription-sidebar/add-subscription-form/add-subscription-form.component';
 import { EditSubscriptionFormComponent } from './subscription-sidebar/edit-subscription-form/edit-subscription-form.component';
 import { SidebarDirective } from '../shared/sidebar.directive';
+import {MaterialModule} from '../../material.module'
+import { AppRoutingModule } from '../../app-routing.module';
+import { NztestsComponent } from './nztests/nztests.component';
 
 @NgModule({
   declarations: [
@@ -11,15 +14,19 @@ import { SidebarDirective } from '../shared/sidebar.directive';
     AddSubscriptionFormComponent,
     EditSubscriptionFormComponent,
     SidebarDirective,
+    NztestsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialModule,
+    AppRoutingModule
   ],
   exports:[
     SubscriptionSidebarComponent,
-    AddSubscriptionFormComponent,
-    EditSubscriptionFormComponent,
-    SidebarDirective,
+    NztestsComponent
+    // AddSubscriptionFormComponent,
+    // EditSubscriptionFormComponent,
+    // SidebarDirective,
   ],
   entryComponents: [AddSubscriptionFormComponent]
 })

@@ -15,7 +15,8 @@ export class SubscriptionSidebarComponent implements OnInit {
   constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
 
   ngOnInit() {
-      this.loadSidebar()}
+      this.loadSidebar()
+   }
 
   loadSidebar() {
 
@@ -29,9 +30,9 @@ export class SubscriptionSidebarComponent implements OnInit {
     (<SidebarComponentInterface>componentRef.instance).data = activeSidebarItem.data;
   }
 
-  ngAfterContentInit() {
+  // ngAfterContentInit() {
 
-    this.loadSidebar()
-  }
+  //   this.loadSidebar()
+  // }
 
 }
