@@ -14,18 +14,29 @@ export enum SidebarName {
 })
 export class SidebarService {
 
-  private _sidebarSource= new BehaviorSubject<SidebarName>(SidebarName.None) // Change to add just testing edit
+  private _sidebarSource = new BehaviorSubject<SidebarName>(SidebarName.None) // Change to add just testing edit
   public currentSidebar = this._sidebarSource.asObservable()
 
   setSidebar(type: SidebarName) {
-    if (type === SidebarName.Add) {
-      // set side bar state to add
-      this._sidebarSource.next( SidebarName.Add )
-    }    
+    switch (type) {
+      case SidebarName.Add:
+        this._sidebarSource.next(SidebarName.Add)
+        break;
+      case SidebarName.Edit:
+        this._sidebarSource.next(SidebarName.Edit)
+        break;
+      case SidebarName.None:
+        this._sidebarSource.next(SidebarName.None)
+        break;
+      default:
+        this._sidebarSource.next(SidebarName.None)
+        break;
+    }
   }
 
-  getSidebars() {
-    
+  getSidebar() {
+    // Redundant for personal project but good for teamwork
+    return this.currentSidebar
   }
 
 

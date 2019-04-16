@@ -13,7 +13,7 @@ import { SidebarService, SidebarName } from './shared/sidebar.service';
 export class BaseComponent implements OnInit, OnDestroy {
   @ViewChild('settingsNav') settingsNav
   @ViewChild('subscriptionNav') subscriptionNav
-  @ViewChild(SidebarDirective) subscriptionSidebarContainer: SidebarDirective
+  // @ViewChild(SidebarDirective) subscriptionSidebarContainer: SidebarDirective
 
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
@@ -31,8 +31,7 @@ export class BaseComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log(this.subscriptionSidebarContainer)
-    this.sidebarService.setSidebar(SidebarName.Add)
+    this.sidebarService.currentSidebar.subscribe(console.log)
   }
 
   onCloseSidebar() {
@@ -53,9 +52,9 @@ export class BaseComponent implements OnInit, OnDestroy {
         this.location.go(`/subscription/${userId}/add`)
         
         // make component dynamic
-        let componentFactory = this.componentFactoryResolver.resolveComponentFactory(AddSubscriptionFormComponent)
-        this.subscriptionSidebarContainer.viewContainerRef.clear()
-        this.subscriptionSidebarContainer.viewContainerRef.createComponent(componentFactory)
+        // let componentFactory = this.componentFactoryResolver.resolveComponentFactory(AddSubscriptionFormComponent)
+        // this.subscriptionSidebarContainer.viewContainerRef.clear()
+        // this.subscriptionSidebarContainer.viewContainerRef.createComponent(componentFactory)
 
         this.subscriptionNav.toggle()
         break;
