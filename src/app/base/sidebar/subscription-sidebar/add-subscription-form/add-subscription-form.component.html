@@ -1,10 +1,92 @@
-<p>
- Add subscription form works now lets make it dynamic
-</p>
+<h1>New Subscription Form</h1>
+<!-- <p>
+  Add subscription form works now lets make it dynamic
+</p> -->
 
-<mat-grid-list cols="2" rowHeight="2:1">
-    <mat-grid-tile>1</mat-grid-tile>
-    <mat-grid-tile>2</mat-grid-tile>
-    <mat-grid-tile>3</mat-grid-tile>
-    <mat-grid-tile>4</mat-grid-tile>
-  </mat-grid-list>
+<!-- <mat-grid-list cols="2" rowHeight="2:1">
+  <mat-grid-tile>1</mat-grid-tile>
+  <mat-grid-tile>2</mat-grid-tile>
+  <mat-grid-tile>3</mat-grid-tile>
+  <mat-grid-tile>4</mat-grid-tile>
+</mat-grid-list> -->
+
+<form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+  <label>
+    Subscription Name
+    <input type="text" formControlName="subscriptionName" required />
+  </label>
+
+  <label>
+    link
+    <input type="text" formControlName="subscriptionLink" />
+  </label>
+
+  <div formGroupName="paymentSchedule">
+    <h3>Payment Schedule</h3>
+
+    <label>
+      Pick Date
+      <mat-form-field>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          placeholder="Choose a date"
+          formControlName="subscriptionDate"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <!-- <input type="text" formControlName="subscriptionDate" /> -->
+    </label>
+
+    <label>
+      <!-- <input type="text" formControlName="dateInterval" /> -->
+      <!-- <mat-checkbox formControlName="dateInterval">Amount</mat-checkbox> -->
+      <!-- <label class="example-margin">Align:</label> -->
+      <!-- <mat-radio-group [(ngModel)]="labelPosition">
+        <mat-radio-button class="example-margin" value="intervalMonthly"
+          >Monthly</mat-radio-button
+        >
+        <mat-radio-button class="example-margin" value="intervalAnnual"
+          >Annally</mat-radio-button
+        >
+      </mat-radio-group> -->
+
+      <!-- SET UP REACTIVE FORM VALIDATION-->
+      <mat-radio-group aria-label="Select an option">
+        <mat-radio-button value="1">Monthly</mat-radio-button>
+        <mat-radio-button value="2">Annual</mat-radio-button>
+      </mat-radio-group>
+    </label>
+  </div>
+
+  <div formGroupName="reminders">
+    <h3>Reminders</h3>
+
+    <label>
+      <mat-checkbox formControlName="reminderEmail">Email</mat-checkbox>
+      <!-- <input type="text" formControlName="reminderEmail" /> -->
+    </label>
+
+    <label>
+      <mat-checkbox formControlName="reminderSms">SMS</mat-checkbox>
+      <!-- <input type="text" formControlName="reminderSms" /> -->
+    </label>
+  </div>
+
+  <button type="submit" [disabled]="!addForm.valid">Submit</button>
+</form>
+
+<hr />
+
+<!-- <p>
+  Form Value: {{ profileForm.value | json }}
+</p>
+-->
+
+<p>Form Status: {{ addForm.status }}</p>
+
+<!--
+<p>
+  <button (click)="updateProfile()">Update Profile</button>
+</p> -->

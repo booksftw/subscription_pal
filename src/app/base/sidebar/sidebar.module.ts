@@ -5,6 +5,7 @@ import { AddSubscriptionFormComponent } from './subscription-sidebar/add-subscri
 import { EditSubscriptionFormComponent } from './subscription-sidebar/edit-subscription-form/edit-subscription-form.component'
 import {SidebarDirective} from '../shared/sidebar.directive'
 import {MaterialModule} from '../../material.module'
+import {ReactiveFormsModule} from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import {MaterialModule} from '../../material.module'
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   exports: [
     SubscriptionSidebarComponent,

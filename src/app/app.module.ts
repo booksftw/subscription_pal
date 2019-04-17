@@ -5,6 +5,7 @@ import {MaterialModule} from './material.module'
 
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms'
 
 import { AppComponent } from './app.component';
 import { BaseComponent } from './base/base.component';
@@ -30,6 +31,7 @@ import { EditSubscriptionFormComponent } from './base/sidebar/subscription-sideb
     LayoutModule,
     SidebarModule,
     AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

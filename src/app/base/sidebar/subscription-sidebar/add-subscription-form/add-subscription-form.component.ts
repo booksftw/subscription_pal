@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {SidebarComponentInterface} from '../../models/sidebar-component'
-
+import { FormBuilder } from '@angular/forms';
+import { Validators } from '@angular/forms';
+import { FormArray } from '@angular/forms';
 // export interface Tile {
 //   color: string;
 //   cols: number;
@@ -15,6 +17,42 @@ import {SidebarComponentInterface} from '../../models/sidebar-component'
 })
 export class AddSubscriptionFormComponent implements OnInit, SidebarComponentInterface {
   @Input() data: any
+  addForm = this.fb.group({
+    subscriptionName: ['', Validators.required],
+    subscriptionLink: [''],
+    paymentSchedule: this.fb.group({
+      subscriptionDate: [''],
+      dateInterval: [''],
+    }),
+    reminders: this.fb.group({
+      reminderEmail: [''],
+      reminderSms: [''],
+    }),
+  });
+
+  // get aliases() {
+  //   return this.profileForm.get('aliases') as FormArray;
+  // }
+
+  // updateProfile() {
+  //   this.profileForm.patchValue({
+  //     firstName: 'Nancy',
+  //     address: {
+  //       street: '123 Drew Street'
+  //     }
+  //   });
+  // }
+
+  // addAlias() {
+  //   this.aliases.push(this.fb.control(''));
+  // }
+
+  onSubmit() {
+    // TODO: Use EventEmitter with form value
+    console.warn(this.addForm.value);
+  }
+
+
 
   // Set the data to be passed from service
   // tiles: [ 
@@ -24,7 +62,7 @@ export class AddSubscriptionFormComponent implements OnInit, SidebarComponentInt
   //   {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'}
   // ];
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
   }

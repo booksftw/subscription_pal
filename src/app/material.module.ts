@@ -7,6 +7,9 @@ import { MatInputModule } from '@angular/material'
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule, MatIconModule, MatListModule } from '@angular/material';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material'
+import { MatRadioModule } from '@angular/material/radio';
 
 
 @NgModule({
@@ -20,7 +23,12 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatToolbarModule,
     MatIconModule,
     MatListModule,
-    MatGridListModule
-  ]
+    MatGridListModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule,
+    MatRadioModule
+  ],
+  providers: [MatDatepickerModule]
 })
 export class MaterialModule { }
