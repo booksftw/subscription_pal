@@ -40,22 +40,10 @@
     </label>
 
     <label>
-      <!-- <input type="text" formControlName="dateInterval" /> -->
-      <!-- <mat-checkbox formControlName="dateInterval">Amount</mat-checkbox> -->
-      <!-- <label class="example-margin">Align:</label> -->
-      <!-- <mat-radio-group [(ngModel)]="labelPosition">
-        <mat-radio-button class="example-margin" value="intervalMonthly"
-          >Monthly</mat-radio-button
-        >
-        <mat-radio-button class="example-margin" value="intervalAnnual"
-          >Annally</mat-radio-button
-        >
-      </mat-radio-group> -->
-
       <!-- SET UP REACTIVE FORM VALIDATION-->
-      <mat-radio-group aria-label="Select an option">
-        <mat-radio-button value="1">Monthly</mat-radio-button>
-        <mat-radio-button value="2">Annual</mat-radio-button>
+      <mat-radio-group aria-label formControlName="dateInterval">
+        <mat-radio-button value="monthly">Monthly</mat-radio-button>
+        <mat-radio-button value="annually">Annual</mat-radio-button>
       </mat-radio-group>
     </label>
   </div>

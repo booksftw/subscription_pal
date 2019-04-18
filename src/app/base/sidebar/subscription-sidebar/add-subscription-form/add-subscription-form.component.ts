@@ -30,37 +30,11 @@ export class AddSubscriptionFormComponent implements OnInit, SidebarComponentInt
     }),
   });
 
-  // get aliases() {
-  //   return this.profileForm.get('aliases') as FormArray;
-  // }
-
-  // updateProfile() {
-  //   this.profileForm.patchValue({
-  //     firstName: 'Nancy',
-  //     address: {
-  //       street: '123 Drew Street'
-  //     }
-  //   });
-  // }
-
-  // addAlias() {
-  //   this.aliases.push(this.fb.control(''));
-  // }
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.addForm.value);
   }
-
-
-
-  // Set the data to be passed from service
-  // tiles: [ 
-  //   {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
-  //   {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
-  //   {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
-  //   {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'}
-  // ];
 
   constructor(private fb: FormBuilder) { }
 

@@ -22,9 +22,6 @@ export class SubscriptionSidebarComponent implements OnInit {
 
   ngOnInit() {
     console.log('side bar smart component init')
-    // const nzUpdates = this.sidebarService.currentSidebar.pipe(
-    //   map( console.log )
-    // )
 
     this.sidebarService.currentSidebar.subscribe(
       (component: any) => {
@@ -39,7 +36,10 @@ export class SubscriptionSidebarComponent implements OnInit {
        }
       }
     )
+    
+    onAddSubscription($event) {
 
+    }
 
   }
 

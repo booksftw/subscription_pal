@@ -26,7 +26,7 @@ export class SidebarService {
         this._sidebarSource.next(AddSubscriptionFormComponent)
         break;
       case SidebarName.Edit:
-        this._sidebarSource.next(new EditSubscriptionFormComponent)
+        this._sidebarSource.next(EditSubscriptionFormComponent)
         break;
       case SidebarName.None:
         this._sidebarSource.next(false)
