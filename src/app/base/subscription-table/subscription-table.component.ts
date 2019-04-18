@@ -26,7 +26,7 @@ export interface subscriptionResponse {
 })
 
 export class SubscriptionTableComponent implements OnInit {
-	@Output() editSub: EventEmitter<number> = new EventEmitter(); 
+	@Output() editSub: EventEmitter<number> = new EventEmitter();
 	@Output() addSub: EventEmitter<void> = new EventEmitter();
 	subscriptionList: any
 	subName: string
@@ -43,11 +43,9 @@ export class SubscriptionTableComponent implements OnInit {
 		this.getSubscriptions()
 	}
 	getSubscriptions() {
-		console.log('calling get subscriptions')
 
 		this.http.get('http://localhost:3000/subscription')
 			.pipe(
-				// tap((res) => console.log(res)),
 				map(res => {
 					return res["subscriptions"]
 				}),
@@ -75,21 +73,19 @@ export class SubscriptionTableComponent implements OnInit {
 	}
 
 	rowClicked(row) {
-		console.log('row', row, this.selection)
+		// console.log('row', row, this.selection)
 	}
 
 	deleteRowClicked(e) {
-		console.log('delete row clicked', e)
+		// console.log('delete row clicked', e)
 	}
-	
+
 	addSubscription() {
 		this.addSub.emit()
-		console.log('sending add sub event to parent')
 	}
 
 	editSubscription(subscription: any) {
-		const {id} = subscription
+		const { id } = subscription
 		this.editSub.emit(id);
-		console.log('sending sub id to parent')
 	}
 }

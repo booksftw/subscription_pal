@@ -1,20 +1,20 @@
-.headerContainer{
+.headerContainer {
   text-align: center;
-  margin: 30px auto;
+  margin: 1.875rem auto;
 }
 
 #brandHeader {
-  font-size: 30px;
-  display:inline-block;
+  font-size: 1.875rem;
+  display: inline-block;
 }
 
-#addSubscriptionBtn{
-  margin-left: 20px;
+#addSubscriptionBtn {
+  margin-left: 1.25rem;
 }
 
-.subscriptionTableInput{
+.subscriptionTableInput {
   display: block;
-  width:50%;
+  width: 50%;
   margin: auto;
 }
 
@@ -28,5 +28,9 @@ table {
 }
 
 .mat-checkbox {
-  margin-left: 25px;
+  margin-left: 1.5625rem;
+}
+
+table.mat-table {
+  margin-bottom: 6.25rem;
 }

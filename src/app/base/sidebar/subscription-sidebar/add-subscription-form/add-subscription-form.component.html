@@ -13,16 +13,44 @@
 <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
   <label>
     Subscription Name
-    <input type="text" formControlName="subscriptionName" required />
+    <!-- <input type="text" formControlName="subscriptionName" required /> -->
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="placeholder"
+        formControlName="subscriptionName"
+        required
+      />
+    </mat-form-field>
   </label>
 
   <label>
     link
-    <input type="text" formControlName="subscriptionLink" />
+    <!-- <input type="text" formControlName="subscriptionLink" /> -->
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="placeholder"
+        formControlName="subscriptionLink"
+      />
+    </mat-form-field>
   </label>
 
   <div formGroupName="paymentSchedule">
     <h3>Payment Schedule</h3>
+
+    <label>
+      Amount
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Amount"
+          formControlName="subscriptionAmount"
+        />
+      </mat-form-field>
+      <!-- <input type="text" formControlName="subscriptionDate" /> -->
+    </label>
+    <br />
 
     <label>
       Pick Date
@@ -62,7 +90,9 @@
     </label>
   </div>
 
-  <button type="submit" [disabled]="!addForm.valid">Submit</button>
+  <button mat-raised-button type="submit" [disabled]="!addForm.valid">
+    Submit
+  </button>
 </form>
 
 <hr />

@@ -23,10 +23,12 @@ export class SidebarService {
     // Create a item package and assign the generic type to that item package. Of course put these values in there.
     switch (type) {
       case SidebarName.Add:
-        this._sidebarSource.next(AddSubscriptionFormComponent)
+        // this._sidebarSource.next(AddSubscriptionFormComponent)
+        this._sidebarSource.next('add')
         break;
       case SidebarName.Edit:
-        this._sidebarSource.next(EditSubscriptionFormComponent)
+        // this._sidebarSource.next(EditSubscriptionFormComponent)
+        this._sidebarSource.next('edit')
         break;
       case SidebarName.None:
         this._sidebarSource.next(false)

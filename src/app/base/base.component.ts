@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild, ComponentFactoryResolver } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild, ComponentFactoryResolver, ElementRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Location } from '@angular/common';
 import { SidebarService, SidebarName } from './shared/sidebar.service';
+import { MatButton } from '@angular/material';
 
 @Component({
   selector: 'app-base',
@@ -11,6 +12,7 @@ import { SidebarService, SidebarName } from './shared/sidebar.service';
 export class BaseComponent implements OnInit, OnDestroy {
   @ViewChild('settingsNav') settingsNav
   @ViewChild('subscriptionNav') subscriptionNav
+  @ViewChild('nzTest') nzTest: MatButton
 
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
@@ -19,7 +21,8 @@ export class BaseComponent implements OnInit, OnDestroy {
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
     private location: Location,
-    private sidebarService: SidebarService
+    private sidebarService: SidebarService,
+    private el: ElementRef
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -27,12 +30,13 @@ export class BaseComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.sidebarService.currentSidebar.subscribe(console.log)
+    // this.sidebarService.currentSidebar.subscribe(console.log)
   }
 
   onCloseSidebar() {
-    this.location.go('/')
     this.sidebarService.setSidebar(SidebarName.None)
+    this.subscriptionNav.close()
+    this.location.go('/')
   }
 
   toggleNav(type) {
@@ -41,7 +45,6 @@ export class BaseComponent implements OnInit, OnDestroy {
         this.settingsNav.toggle()
         break;
       case 'subscription':
-        console.log('subscripton toggle')
         this.sidebarService.setSidebar(SidebarName.Add)
         // Update Userid to be dynamic
         const userId = 2
@@ -55,12 +58,10 @@ export class BaseComponent implements OnInit, OnDestroy {
   }
 
   onAddSubscription() {
-    console.log('parent adding new subscription')
     this.toggleNav('subscription')
   }
 
   onEditSubscription(subscriptionId: number) {
-    console.log(`Parent Here: Edit subsription number ${subscriptionId}`)
     this.toggleNav('subscription')
   }
 

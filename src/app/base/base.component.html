@@ -29,7 +29,10 @@
     <mat-nav-list>
       <!-- Subscription Nav -->
       <!-- <a mat-list-item>Howdy</a> -->
-      <app-subscription-sidebar mat-list-item ></app-subscription-sidebar>
+      <app-subscription-sidebar
+        mat-list-item
+        (addSubscriptionEvent)="onCloseSidebar()"
+      ></app-subscription-sidebar>
     </mat-nav-list>
   </mat-sidenav>
 
