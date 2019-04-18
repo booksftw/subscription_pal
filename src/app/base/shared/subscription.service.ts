@@ -12,6 +12,6 @@ export class SubscriptionService {
 
   addNewSubscription(subscription: SubscriptionInterface) {
     console.log(subscription, ' hi')
-    this.http.post('http://localhost:3000/subscription/add', subscription)
+    this.http.post('http://localhost:3010/subscription/add', subscription).subscribe()
   }
 }
