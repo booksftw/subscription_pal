@@ -4,6 +4,8 @@ import { Observable, Subscription, noop, } from 'rxjs'
 import { map, filter, tap, shareReplay } from 'rxjs/operators'
 import { SelectionModel } from '@angular/cdk/collections'
 import { MatTableDataSource } from '@angular/material'
+import { SubscriptionService } from '../shared/subscription.service';
+import { SubscriptionInterface } from '../models/subscription.model';
 
 
 interface subscription {
@@ -33,25 +35,17 @@ export class SubscriptionTableComponent implements OnInit {
 	amount: number
 
 	displayedColumns: string[] = ['select', 'id', 'name', 'amount', 'status', 'remove']
-	dataSource = new MatTableDataSource([])
+	dataSource: any = new MatTableDataSource([])
 	selection = new SelectionModel<any>(true, []) // new SelectionModel<subscription>(true, [])
-	listLength: number
 
-	constructor(private http: HttpClient) { }
+	constructor(
+		private http: HttpClient,
+		private subscriptionService: SubscriptionService
+	) { }
 
 	ngOnInit() {
-		this.getSubscriptions()
-	}
-	getSubscriptions() {
-
-		this.http.get('http://localhost:3000/subscription')
-			.pipe(
-				map(res => {
-					return res["subscriptions"]
-				}),
-				tap((res) => this.listLength = res.length),
-			)
-			.subscribe((res) => this.dataSource.data = res)
+		this.subscriptionService.getSubscriptions()
+			.subscribe((res) => this.dataSource.data = res) // Optimization: Pass to template to subscribe with async
 	}
 
 	applyFilter(filterValue: string) {
@@ -76,8 +70,10 @@ export class SubscriptionTableComponent implements OnInit {
 		// console.log('row', row, this.selection)
 	}
 
-	deleteRowClicked(e) {
-		// console.log('delete row clicked', e)
+	deleteRowClicked(subscriptionRecord) {
+		console.log('delete row clicked', subscriptionRecord)
+		const { id } = subscriptionRecord
+		this.subscriptionService.deleteSubscription(id)
 	}
 
 	addSubscription() {
