@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { SubscriptionInterface } from '../models/subscription.model'
 import { HttpClient } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
 
-@Injectable({
+Injectable({
   providedIn: 'root'
 })
 export class SubscriptionService {
+  subscriptions: Observable<any>;
 
   constructor(private http: HttpClient) { }
 
@@ -15,7 +17,9 @@ export class SubscriptionService {
   }
 
   getSubscriptions() {
-    return this.http.get('http://localhost:3010/subscription')
+    this.subscriptions = this.http.get('http://localhost:3010/subscription')
+    console.log(this.subscriptions)
+    return this.subscriptions
   }
 
   deleteSubscription(id: any) {
