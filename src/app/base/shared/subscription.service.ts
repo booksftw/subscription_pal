@@ -7,7 +7,7 @@ Injectable({
   providedIn: 'root'
 })
 export class SubscriptionService {
-  subscriptions: Observable<any>;
+  // subscriptions: Observable<any>;
 
   constructor(private http: HttpClient) { }
 
