@@ -5,8 +5,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
     providedIn: 'root'
 })
 export class SubscriptionStore {
-    const subscriptionSubject = BehaviorSubject
-    const subscriptionObservable = Observable.create(next('howdy'))
+    subscriptionSubject = new BehaviorSubject('begin')
+    // subscriptionObservable = Observable.create(next('howdy'))
 
     select() {
 
