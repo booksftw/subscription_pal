@@ -7,7 +7,8 @@ Injectable({
   providedIn: 'root'
 })
 export class SubscriptionService {
-  // subscriptions: Observable<any>;
+  subscriptions: Observable<any>;
+  // subscriptions: Subject<any> = new Subject()
 
   constructor(private http: HttpClient) { }
 
@@ -17,6 +18,9 @@ export class SubscriptionService {
   }
 
   getSubscriptions() {
+    // this.subscriptions.next(
+    //   this.http.get('http://localhost:3010/subscription')
+    // )
     this.subscriptions = this.http.get('http://localhost:3010/subscription')
     console.log(this.subscriptions)
     return this.subscriptions
