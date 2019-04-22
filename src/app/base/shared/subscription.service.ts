@@ -7,9 +7,6 @@ Injectable({
   providedIn: 'root'
 })
 export class SubscriptionService {
-  // subscriptions: Observable<any>;
-  // subscriptions: Subject<any> = new Subject()
-
   nzSubject: BehaviorSubject<any> = new BehaviorSubject([])
   constructor(private http: HttpClient) { }
 
