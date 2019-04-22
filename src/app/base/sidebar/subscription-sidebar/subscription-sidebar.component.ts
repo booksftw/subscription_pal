@@ -33,11 +33,6 @@ export class SubscriptionSidebarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // console.log(this.route.snapshot.url[1].path, this.route.snapshot, '<<<<<<<<<<<<<<<<<<<<<<<<')
-
-    // GET DATA FOR EDIT SIDEBAR AND SEND IT
-    // this.subscriptionService.getSingleSubscription()
-
     this.sidebarService.currentSidebar.subscribe(
       // (componentFlag: string | boolean, extra: any) => {
       (sidebarState) => {
