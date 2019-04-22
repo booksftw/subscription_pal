@@ -20,14 +20,15 @@ export class SidebarService {
   public currentSidebar = this._sidebarSource.asObservable()
 
   setSidebar(type: SidebarName) {
+    console.log('setting sidebar type ' + type)
     // Create a item package and assign the generic type to that item package. Of course put these values in there.
     switch (type) {
       case SidebarName.Add:
-        // this._sidebarSource.next(AddSubscriptionFormComponent)
+        console.log('calling add sidebar')
         this._sidebarSource.next('add')
         break;
       case SidebarName.Edit:
-        // this._sidebarSource.next(EditSubscriptionFormComponent)
+        console.log('calling edit sidebar')
         this._sidebarSource.next('edit')
         break;
       case SidebarName.None:

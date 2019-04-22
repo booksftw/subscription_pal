@@ -6,6 +6,7 @@ import { SelectionModel } from '@angular/cdk/collections'
 import { MatTableDataSource } from '@angular/material'
 import { SubscriptionService } from '../shared/subscription.service';
 import { SubscriptionInterface } from '../models/subscription.model';
+import { SidebarService, SidebarName } from '../shared/sidebar.service';
 
 
 interface subscription {
@@ -40,12 +41,16 @@ export class SubscriptionTableComponent implements OnInit {
 
 	constructor(
 		private http: HttpClient,
-		private subscriptionService: SubscriptionService
+		private subscriptionService: SubscriptionService,
+		private sidebarService: SidebarService
 	) { }
 
 	ngOnInit() {
 		this.subscriptionService.getSubscriptions()
-			.subscribe((res) => this.dataSource.data = res) // Optimization: Pass to template to subscribe with async
+			.subscribe((res) => {
+				console.log('table res', res)
+				this.dataSource.data = res
+			}) // Optimization: Pass to template to subscribe with async
 	}
 
 	applyFilter(filterValue: string) {
@@ -67,7 +72,9 @@ export class SubscriptionTableComponent implements OnInit {
 	}
 
 	rowClicked(row) {
-		// console.log('row', row, this.selection)
+		console.log('row clicked', row, this.selection)
+		// Trigger the sidebar service and send the id of the row
+		this.sidebarService.setSidebar(SidebarName.Edit)
 	}
 
 	deleteRowClicked(subscriptionRecord) {
