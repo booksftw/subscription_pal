@@ -1,17 +1,13 @@
 import { Injectable } from '@angular/core';
 import { SubscriptionInterface } from '../models/subscription.model'
 import { HttpClient } from '@angular/common/http';
-<<<<<<< HEAD
-import { Observable, Subject } from 'rxjs';
-=======
 import { BehaviorSubject } from 'rxjs';
->>>>>>> feature/liveupdatewithsubject2
 
 Injectable({
   providedIn: 'root'
 })
 export class SubscriptionService {
-  subscriptions: Observable<any>;
+  // subscriptions: Observable<any>;
   // subscriptions: Subject<any> = new Subject()
 
   nzSubject: BehaviorSubject<any> = new BehaviorSubject([])
@@ -42,21 +38,12 @@ export class SubscriptionService {
   }
 
   getSubscriptions() {
-<<<<<<< HEAD
-    // this.subscriptions.next(
-    //   this.http.get('http://localhost:3010/subscription')
-    // )
-    this.subscriptions = this.http.get('http://localhost:3010/subscription')
-    console.log(this.subscriptions)
-    return this.subscriptions
-=======
     this.http.get('http://localhost:3010/subscription').subscribe(e => {
       this.nzSubject.next(e)
     })
     // this.nzSubject.subscribe(e => console.log(e))
     return this.nzSubject
     // return this.http.get('http://localhost:3010/subscription')
->>>>>>> feature/liveupdatewithsubject2
   }
 
   deleteSubscription(id: any) {

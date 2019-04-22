@@ -34,7 +34,7 @@ import { SubscriptionService } from './base/shared/subscription.service';
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [SubscriptionService],
+  providers: [],
   bootstrap: [AppComponent],
   entryComponents: [AddSubscriptionFormComponent, EditSubscriptionFormComponent]
 })
