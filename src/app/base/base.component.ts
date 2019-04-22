@@ -35,7 +35,7 @@ export class BaseComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // this.sidebarService.currentSidebar.subscribe(console.log)
+    
   }
 
   onCloseSidebar() {
