@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+//
+// ─── DUMB COMPONENT SIDEBAR ─────────────────────────────────────────────────────
+//
 @Component({
   selector: 'app-edit-subscription-form',
   templateUrl: './edit-subscription-form.component.html',
@@ -11,7 +14,6 @@ export class EditSubscriptionFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    setTimeout(_ => console.log(this.data), 2000)
   }
 
 }

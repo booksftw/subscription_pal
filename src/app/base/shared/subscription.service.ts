@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SubscriptionInterface } from '../models/subscription.model'
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +41,14 @@ export class SubscriptionService {
     // this.nzSubject.subscribe(e => console.log(e))
     return this.nzSubject
     // return this.http.get('http://localhost:3010/subscription')
+  }
+
+  getSingleSubscription(id: number):Observable<any> {
+    console.log(id, typeof(id), ' id in angular service')
+    
+    const subscription: Observable<any> = this.http.get(`http://localhost:3010/subscription/${id}`)
+
+    return subscription
   }
 
   deleteSubscription(id: any) {

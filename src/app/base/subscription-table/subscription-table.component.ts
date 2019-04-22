@@ -48,7 +48,6 @@ export class SubscriptionTableComponent implements OnInit {
 	ngOnInit() {
 		this.subscriptionService.getSubscriptions()
 			.subscribe((res) => {
-				console.log('table res', res)
 				this.dataSource.data = res
 			}) // Optimization: Pass to template to subscribe with async
 	}
@@ -72,10 +71,8 @@ export class SubscriptionTableComponent implements OnInit {
 	}
 
 	rowClicked(row) {
-		console.log('row clicked', row, row.id, '<<<<<')
+		// console.log('row clicked', row, row.id, '<<<<<')
 		this.editSub.emit(row.id)
-		// Trigger the sidebar service and send the id of the row
-		this.sidebarService.setSidebar(SidebarName.Edit)
 	}
 
 	deleteRowClicked(subscriptionRecord) {

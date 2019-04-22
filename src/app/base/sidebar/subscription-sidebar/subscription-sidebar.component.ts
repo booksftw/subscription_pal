@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ComponentFactoryResolver, ComponentFactory, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SidebarService, SidebarName } from '../../shared/sidebar.service';
@@ -28,20 +28,40 @@ export class SubscriptionSidebarComponent implements OnInit {
 
   constructor(
     private sidebarService: SidebarService,
-    private subscriptionService: SubscriptionService
+    private subscriptionService: SubscriptionService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    // console.log(this.route.snapshot.url[1].path, this.route.snapshot, '<<<<<<<<<<<<<<<<<<<<<<<<')
+
     // GET DATA FOR EDIT SIDEBAR AND SEND IT
+    // this.subscriptionService.getSingleSubscription()
 
     this.sidebarService.currentSidebar.subscribe(
-      (componentFlag: string | boolean) => {
-        componentFlag === 'add' ? this.showAddForm = true : this.showAddForm = false
-        componentFlag === 'edit' ? this.showEditForm = true : this.showEditForm = false
+      // (componentFlag: string | boolean, extra: any) => {
+      (sidebarState) => {
+        const { componentFlag, id } = sidebarState
+        componentFlag === 'add' ? this.onShowAddForn() : this.showAddForm = false
+        componentFlag === 'edit' ? this.onShowEditForm(id) : this.showEditForm = false
       }
     )
+  }
 
+  onShowAddForn() {
+    this.showAddForm = true
+  }
 
+  // ! Javascript Passes Destructure Item as Object Type
+  // The type is defined and that's what it looks like.
+  // Typescript even accepts number type for this paramater which is super bad.
+  // Summary this is my workaround for passing this id as number type to the getSingleSubscription method.
+  onShowEditForm(idContainer: { id: number }) {
+    console.log('showeditform ID', idContainer.id)
+    const subscription$ = this.subscriptionService.getSingleSubscription(idContainer.id)
+    subscription$.subscribe(e => console.log(e, '<<<<<<<<<<<<<<<'))
+
+    this.showEditForm = true
   }
 
   onAddSubscription($event) {

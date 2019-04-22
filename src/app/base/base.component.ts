@@ -50,17 +50,17 @@ export class BaseComponent implements OnInit, OnDestroy {
         this.settingsNav.toggle()
         break;
       case 'subscription':
+        this.location.go(`/subscription/add`)
         this.sidebarService.setSidebar(SidebarName.Add)
         // Update Userid to be dynamic
         const userId = 2
         // this.location.go(`/subscription/${userId}/add`)
-        this.location.go(`/subscription/add`)
         this.subscriptionNav.toggle()
         break;
       case 'edit':
-        this.sidebarService.setSidebar(SidebarName.Add)
         // Update Userid to be dynamic
         this.location.go(`/subscription/${subscriptionId}/edit`)
+        this.sidebarService.setSidebar(SidebarName.Edit, { id: subscriptionId })
         this.subscriptionNav.toggle()
         break;
       default:
@@ -74,7 +74,6 @@ export class BaseComponent implements OnInit, OnDestroy {
   }
 
   onEditSubscription(subscriptionId: number) {
-    console.log('base subscription hears row ', subscriptionId)
     // Pass the id as well some how so that the component that needs it can receive it.
     this.toggleNav('edit', subscriptionId)
   }
