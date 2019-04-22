@@ -9,6 +9,11 @@ import { EditSubscriptionFormComponent } from './edit-subscription-form/edit-sub
 import { SubscriptionService } from '../../shared/subscription.service';
 import { SubscriptionInterface } from '../../models/subscription.model';
 
+//
+// ──────────────────────────────────────────────────────────────────────────────────────────────── I ──────────
+//   :::::: S M A R T   C O M P O N E N T   F O R   S I D E B A R S : :  :   :    :     :        :          :
+// ──────────────────────────────────────────────────────────────────────────────────────────────────────────
+//
 @Component({
   selector: 'app-subscription-sidebar',
   templateUrl: './subscription-sidebar.component.html',
@@ -17,6 +22,7 @@ import { SubscriptionInterface } from '../../models/subscription.model';
 export class SubscriptionSidebarComponent implements OnInit {
   @Output() addSubscriptionEvent: EventEmitter<any> = new EventEmitter()
   @ViewChild(SidebarDirective) subscriptionSidebarContainer: SidebarDirective
+  data: any
   showAddForm: boolean
   showEditForm: boolean
 
@@ -26,20 +32,17 @@ export class SubscriptionSidebarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // GET DATA FOR EDIT SIDEBAR AND SEND IT
 
     this.sidebarService.currentSidebar.subscribe(
-      (component: string | boolean) => {
-        component === 'add' ? this.showAddForm = true : this.showAddForm = false
-        component === 'edit' ? this.showEditForm = true : this.showEditForm = false
+      (componentFlag: string | boolean) => {
+        componentFlag === 'add' ? this.showAddForm = true : this.showAddForm = false
+        componentFlag === 'edit' ? this.showEditForm = true : this.showEditForm = false
       }
     )
-  }
 
-  // name: string
-  // amount: number
-  // image: string
-  // linkToPage: string
-  // status: boolean
+
+  }
 
   onAddSubscription($event) {
     console.log($event, 'smart component')
@@ -55,7 +58,6 @@ export class SubscriptionSidebarComponent implements OnInit {
       name, amount, linkToPage, image, status
     }
     this.subscriptionService.addNewSubscription(newSubscriptionRecord)
-    // Reach out to the server and pass the data
   }
 
 }

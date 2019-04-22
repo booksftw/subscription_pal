@@ -5,4 +5,7 @@
   *ngIf="showAddForm"
   (addSubmit)="onAddSubscription($event)"
 ></app-add-subscription-form>
-<app-edit-subscription-form *ngIf="showEditForm"></app-edit-subscription-form>
+<app-edit-subscription-form
+  [data]="data"
+  *ngIf="showEditForm"
+></app-edit-subscription-form>

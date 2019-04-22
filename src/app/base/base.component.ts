@@ -4,6 +4,11 @@ import { Location } from '@angular/common';
 import { SidebarService, SidebarName } from './shared/sidebar.service';
 import { MatButton } from '@angular/material';
 
+//
+// ──────────────────────────────────────────────────────────────────────────────────────────────────────────────── I ──────────
+//   :::::: B A S E   S M A R T   C O M P O N E N T   F O R   T H I S   M O D U L E : :  :   :    :     :        :          :
+// ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+//
 @Component({
   selector: 'app-base',
   templateUrl: './base.component.html',
@@ -62,6 +67,8 @@ export class BaseComponent implements OnInit, OnDestroy {
   }
 
   onEditSubscription(subscriptionId: number) {
+    console.log('base subscription hears row ', subscriptionId)
+    // Pass the id as well some how so that the component that needs it can receive it.
     this.toggleNav('subscription')
   }
 

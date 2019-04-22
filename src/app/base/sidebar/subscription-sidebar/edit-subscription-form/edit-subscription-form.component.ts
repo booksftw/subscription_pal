@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-edit-subscription-form',
@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-subscription-form.component.scss']
 })
 export class EditSubscriptionFormComponent implements OnInit {
+  @Input() data: any;
 
   constructor() { }
 
   ngOnInit() {
+    setTimeout(_ => console.log(this.data), 2000)
   }
 
 }

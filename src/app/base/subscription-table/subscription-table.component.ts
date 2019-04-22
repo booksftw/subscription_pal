@@ -72,7 +72,8 @@ export class SubscriptionTableComponent implements OnInit {
 	}
 
 	rowClicked(row) {
-		console.log('row clicked', row, this.selection)
+		console.log('row clicked', row, row.id, '<<<<<')
+		this.editSub.emit(row.id)
 		// Trigger the sidebar service and send the id of the row
 		this.sidebarService.setSidebar(SidebarName.Edit)
 	}
